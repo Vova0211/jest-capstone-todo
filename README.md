@@ -36,7 +36,7 @@ npm run test:coverage # тесты + отчёт о покрытии
 
 ## Покрытие
 
-<!-- Вставьте сюда скриншот таблицы покрытия из `npm run test:coverage` -->
+![test coverage](./.github/coverage.png)
 
 ---
 

@@ -16,42 +16,59 @@ export function createTask(title) {
 
 // TODO: вернуть КОПИЮ задачи с инвертированным done (исходную не менять).
 export function toggleTask(task) {
-  throw new Error("Не реализовано");
+  const { title, done} = task
+  return {
+    title,
+    done: !done
+  }
 }
 
 // TODO: вернуть НОВЫЙ массив с добавленной задачей (используйте createTask).
 export function addTask(tasks, title) {
-  throw new Error("Не реализовано");
+  return [
+    ...tasks,
+    createTask(title)
+  ]
 }
 
 // TODO: вернуть НОВЫЙ массив без задачи с этим названием.
 export function removeTask(tasks, title) {
-  throw new Error("Не реализовано");
+  return tasks.filter(e => e.title !== title)
 }
 
 // TODO: вернуть задачу с этим названием или undefined.
 export function findTask(tasks, title) {
-  throw new Error("Не реализовано");
+  return tasks.find(e => e.title === title)
 }
 
 // TODO: вернуть число невыполненных задач.
 export function countActive(tasks) {
-  throw new Error("Не реализовано");
+  return tasks.reduce((amount, curr) => 
+    curr.done ? amount : ++amount, 0)
 }
 
 // TODO: вернуть объект { total, active, done, titles }.
 export function summarizeTasks(tasks) {
-  throw new Error("Не реализовано");
+  return {
+    total: tasks.length,
+    active: countActive(tasks),
+    done: tasks.length - countActive(tasks),
+    titles: tasks.map(e => e.title)
+  }
 }
 
 // TODO (async): взять api.fetchTitles() -> массив названий,
 // вернуть массив задач. Ошибку сети пробросить.
 export async function loadTasks(api) {
-  throw new Error("Не реализовано");
+  const titles = await api.fetchTitles()
+
+  return titles.map(e => createTask(e))
 }
 
 // TODO: запланировать storage.save(tasks) через delay мс (по умолчанию 1000).
 // Вернуть id таймера.
 export function scheduleAutosave(storage, tasks, delay = 1000) {
-  throw new Error("Не реализовано");
+  return setTimeout(() => {
+    storage.save(tasks)
+  }, delay)
 }
